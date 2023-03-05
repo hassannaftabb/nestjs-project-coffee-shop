@@ -9,7 +9,6 @@ import {
 } from '@nestjs/common';
 import { CreateCoffeeDto } from 'src/dtos/coffees/create-coffee.dto';
 import { UpdateCoffeeDto } from 'src/dtos/coffees/update-coffee.dto';
-import { Coffee } from 'src/entities/coffees/Coffee.entity';
 import { CoffeesService } from 'src/services/coffees/coffees.service';
 
 @Controller('coffees')
@@ -17,12 +16,12 @@ export class CoffeesController {
   constructor(private readonly coffeeService: CoffeesService) {}
   @Get()
   findAll() {
-    const allCoffees: Coffee[] = this.coffeeService.findAll();
+    const allCoffees = this.coffeeService.findAll();
     return allCoffees;
   }
   @Get(':id')
   findOne(@Param('id') id: number) {
-    return this.coffeeService.findOne('' + id);
+    return this.coffeeService.findOne(id);
   }
   @Post()
   addCoffe(@Body() createCoffeeDto: CreateCoffeeDto) {
@@ -37,7 +36,7 @@ export class CoffeesController {
     return this.coffeeService.update(id, updateCoffeeDto);
   }
   @Delete(':id')
-  deleteCoffe(@Param('id') id: string) {
+  deleteCoffe(@Param('id') id: number) {
     return this.coffeeService.remove(id);
   }
 }
