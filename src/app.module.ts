@@ -15,7 +15,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       password: 'l0hUZO2JizkD6pPZYn6O',
       database: 'railway',
       autoLoadEntities: true,
-      synchronize: false,
+      synchronize: true,
     }),
   ],
   controllers: [AppController],
